@@ -10,19 +10,12 @@
     <link rel="stylesheet" href="assets/style.css">
 
   <style>
-    body {
-      background: #f9f3d791;
-    }   
-    .hero {
-      background: url("assets/portada.jpg") center/cover no-repeat;
-      color: white;
-      height: 60vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-direction: column;
-      text-shadow: 2px 2px 6px rgba(0,0,0,0.7);
-    }
+       
+   body { background: #fbf2cb91; }
+  .card {
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0,0,0,.1);
+  }
     .card {
       border-radius: 15px;
       box-shadow: 0px 4px 10px rgba(0,0,0,0.1);
@@ -56,12 +49,15 @@
 
 
 <!-- Hero Section -->
-<section id="inicio" class="hero text-center">
+<section id="inicio" class="hero">
   <div class="overlay">
-    <h1 class="display-4 fw-bold">🌱 Pacha Data</h1>
+<h1 class="fw-bold"><span class="me-2"></span>Pacha Data 🌱</h1>
     <p class="lead">Calendario Agrícola Inca 2.0</p>
+    <div class="hero-accent"></div>
   </div>
 </section>
+
+
 
 
 <div class="container my-5">
@@ -106,7 +102,7 @@
       <h2>📅 Mes Inca Actual</h2>
       <img src="assets/calendario.png" alt="Calendario Inca" class="img-fluid rounded mb-3" style="max-width:340px;">
       <h4 id="mesInca" class="text-success" style="font-size: 40px;" ></h4>
-      <p id="descMes" style="font-size: 22px;"></p>
+      <p id="descMes" style="font-size: 24px;"></p>
       <p id="mesGreg" class="text-muted small" style="font-size: 18px;"></p>
     </div>
   </div>
@@ -115,22 +111,24 @@
   <div class="col-12 col-lg-6">
     <div class="card p-4 h-100">
       <h2>🌤️ Clima en tu zona</h2>
-      <div class="input-group mb-3">
-        <input id="ciudad" type="text" class="form-control" placeholder="Ingresa tu ciudad (ej: Cusco,PE)">
-        <button onclick="obtenerClima()" class="btn btn-success">Ver Clima</button>
-      </div>
-      <p id="clima" class="fs-5 fw-semibold text-primary mb-0"></p>
-    </div>
+
+<div class="row g-2 align-items-stretch">
+  <div class="col-12 col-md-8">
+    <input id="ciudad" type="text" class="form-control form-control-lg"
+           placeholder="Ingresa tu ciudad (ej: Cusco,PE)">
+  </div>
+  <div class="col-12 col-md-4 d-grid">
+    <button onclick="obtenerClima()" class="btn btn-success btn-lg">Ver Clima</button>
   </div>
 </div>
 
-
-
-
-
-
-
-
+<div class="clima-output mt-3 d-flex align-items-center gap-3">
+  <!-- si luego quieres animación, aquí va un canvas/ícono -->
+  <!-- <canvas id="skycon" width="64" height="64"></canvas> -->
+  <div id="clima" class="clima-text">Ingresa una ciudad para ver el clima.</div>
+</div>
+  </div>
+</div>
 
   <!-- Consejo Pachamama -->
   <div class="card p-4 text-center mb-4">
@@ -159,6 +157,7 @@
 
 <!-- Bootstrap JS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
 <script>
   // Calendario Inca
   
@@ -199,7 +198,12 @@ mostrarMes();
     "Amigo agricultor, siembra con gratitud y cosecharás abundancia.",
     "Riega tus plantas al amanecer, la Pachamama bendecirá tus cultivos.",
     "Respeta la tierra y ella te devolverá vida.",
-    "Hoy es buen día para agradecer al sol y la lluvia."
+    "Hoy es buen día para agradecer al sol y la lluvia.",
+    "En Aymuray, prepara la tierra con gratitud; en Inti Raymi, agradece al sol con alegría.",
+    "Cada mes del calendario inca trae un mensaje: escucha la voz de tus ancestros.",
+    "En Ccatac, la cosecha es abundancia; comparte con tu comunidad.",
+    "En Kapak Raymi, celebra la vida y guarda semillas para el próximo ciclo.",
+    "Así como el calendario inca honra la luna y el sol, honra tú tus cultivos con paciencia."
   ];
   function darConsejo() {
     const random = Math.floor(Math.random() * consejos.length);
