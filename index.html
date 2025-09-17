@@ -1,26 +1,15 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Pacha Data - Calendario Agrícola Inca 2.0</title>
+
   <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
 
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="assets/style.css">
-
-  <style>
-       
-   body { background: #fbf2cb91; }
-  .card {
-    border-radius: 15px;
-    box-shadow: 0 4px 10px rgba(0,0,0,.1);
-  }
-    .card {
-      border-radius: 15px;
-      box-shadow: 0px 4px 10px rgba(0,0,0,0.1);
-    }
-  </style>
+  <!-- Tu CSS -->
+  <link rel="stylesheet" href="assets/style.css" />
 </head>
 <body>
 
@@ -46,106 +35,102 @@
   </div>
 </nav>
 
-
-
-<!-- Hero Section -->
+<!-- Hero -->
 <section id="inicio" class="hero">
   <div class="overlay">
-<h1 class="fw-bold"><span class="me-2"></span>Pacha Data 🌱</h1>
+    <h1 class="fw-bold"><span class="me-2"></span>Pacha Data 🌱</h1>
     <p class="lead">Calendario Agrícola Inca 2.0</p>
     <div class="hero-accent"></div>
   </div>
 </section>
 
-
-
-
 <div class="container my-5">
 
   <!-- Objetivos -->
-<div id="objetivos" class="row mb-4">
+  <div id="objetivos" class="row mb-4">
     <h2 class="text-center mb-3">🎯 Objetivos</h2>
+
     <div class="col-md-4">
       <div class="card p-3 text-center">
         <h5>🌦️ Decisiones Climáticas</h5>
         <p>Ayudar a los agricultores a tomar decisiones frente a variaciones del clima.</p>
-            <img src="assets/imagen4.jpg" class="card-img-top mb-2" alt="Decisiones Climáticas" class="rounded">
-
+        <img src="assets/imagen4.jpg" class="card-img-top mb-2 rounded" alt="Decisiones Climáticas">
       </div>
     </div>
+
     <div class="col-md-4">
       <div class="card p-3 text-center">
         <h5>🌽 Reducir Pérdidas</h5>
         <p>Minimizar pérdidas de cultivos mediante alertas oportunas.</p>
-            <img src="assets/imagen5.jpg" class="card-img-top mb-2" alt="Decisiones Climáticas" class="rounded">
-
-
+        <img src="assets/imagen5.jpg" class="card-img-top mb-2 rounded" alt="Reducir Pérdidas">
       </div>
     </div>
+
     <div class="col-md-4">
       <div class="card p-3 text-center">
         <h5>🌍 Fortalecer Agricultura</h5>
         <p>Recuperar el calendario agrícola inca para la agricultura local.</p>
-            <img src="assets/decisiones_climaticas.jpg" class="card-img-top mb-2" alt="Decisiones Climáticas" class="rounded">
-
+        <img src="assets/decisiones_climaticas.jpg" class="card-img-top mb-2 rounded" alt="Fortalecer Agricultura">
       </div>
     </div>
   </div>
 
- 
+  <!-- Mes Inca + Clima -->
+  <div id="calendario" class="row g-4 align-items-stretch mb-4">
 
-<!-- Mes Inca + Clima (responsive en 2 columnas) -->
-<div id="calendario" class="row g-4 align-items-stretch mb-4">
-  <!-- Mes Inca Actual -->
-  <div class="col-12 col-lg-6">
-    <div class="card p-4 h-100" style="display: flex; justify-content: center; align-items: center; height: 200px; border: 1px solid #ccc;" >
-      <h2>📅 Mes Inca Actual</h2>
-      <img src="assets/calendario.png" alt="Calendario Inca" class="img-fluid rounded mb-3" style="max-width:340px;">
-      <h4 id="mesInca" class="text-success" style="font-size: 40px;" ></h4>
-      <p id="descMes" style="font-size: 24px;"></p>
-      <p id="mesGreg" class="text-muted small" style="font-size: 18px;"></p>
+    <!-- Mes Inca Actual -->
+    <div class="col-12 col-lg-6">
+      <div class="card p-4 h-100" style="display:flex;justify-content:center;align-items:center;height:200px;border:1px solid #ccc;">
+        <h2>📅 Mes Inca Actual</h2>
+        <img src="assets/calendario.png" alt="Calendario Inca" class="img-fluid rounded mb-3" style="max-width:340px;">
+        <h4 id="mesInca" class="text-success" style="font-size:40px;"></h4>
+        <p id="descMes" style="font-size:24px;"></p>
+        <p id="mesGreg" class="text-muted small" style="font-size:18px;"></p>
+      </div>
     </div>
-  </div>
 
-  <!-- Clima en tu zona -->
-  <div class="col-12 col-lg-6">
-    <div class="card p-4 h-100">
-      <h2>🌤️ Clima en tu zona</h2>
+    <!-- Clima en tu zona -->
+    <div class="col-12 col-lg-6">
+      <div class="card p-4 h-100">
+        <h2>🌤️ Clima en tu zona</h2>
 
-<div class="row g-2 align-items-stretch">
-  <div class="col-12 col-md-8">
-    <input id="ciudad" type="text" class="form-control form-control-lg"
-           placeholder="Ingresa tu ciudad (ej: Cusco,PE)">
-  </div>
-  <div class="col-12 col-md-4 d-grid">
-    <button onclick="obtenerClima()" class="btn btn-success btn-lg">Ver Clima</button>
-  </div>
-</div>
+        <div class="row g-2 align-items-stretch">
+          <div class="col-12 col-md-8">
+            <input id="ciudad" type="text" class="form-control form-control-lg" placeholder="Ingresa tu ciudad (ej: Cusco,PE)">
+          </div>
+          <div class="col-12 col-md-4 d-grid">
+            <button onclick="obtenerClima()" class="btn btn-success btn-lg">Ver Clima</button>
+          </div>
+        </div>
 
-<div class="clima-output mt-3 d-flex align-items-center gap-3">
-  <!-- si luego quieres animación, aquí va un canvas/ícono -->
-  <!-- <canvas id="skycon" width="64" height="64"></canvas> -->
-  <div id="clima" class="clima-text">Ingresa una ciudad para ver el clima.</div>
-</div>
+        <!-- Resultado + icono animado -->
+        <div class="clima-output mt-3 d-flex align-items-center gap-3">
+          <canvas id="skycon" width="72" height="72" class="d-none"></canvas>
+          <div id="clima" class="clima-text">Ingresa una ciudad para ver el clima.</div>
+        </div>
+      </div>
+    </div>
+
   </div>
-</div>
 
   <!-- Consejo Pachamama -->
   <div class="card p-4 text-center mb-4">
     <h2>🌿 Consejo de la Pachamama</h2>
-<div class="d-flex justify-content-center">
-  <button onclick="darConsejo()" class="btn btn-warning btn-lg mt-2 w-auto">
-    Pedir Consejo
-  </button>
-</div>    <p id="consejo" class="fs-5 fst-italic mt-3 text-success"></p>
+            <img src="assets/pachamamaOficial.png" alt="Calendario Inca" class="img-fluid rounded mb-3 d-block mx-auto" style="max-width:340px;"> 
+            
+
+    <div class="d-flex justify-content-center">
+      <button onclick="darConsejo()" class="btn btn-warning btn-lg mt-2 w-auto">Pedir Consejo</button>
+    </div>
+    <p id="consejo" class="fs-5 fst-italic mt-3 text-success"></p>
   </div>
 
   <!-- Equipo -->
-<div id="contacto" class="card p-4">
+  <div id="contacto" class="card p-4">
     <h2>👥 Equipo</h2>
     <p><strong>Integrantes:</strong> Medina Coaquira Minerva, Rivera Castillo Dayron </p>
-    <p><strong>Institución:</strong>  I.E técnico Agropecuario Urubamba</p>
-    <p><strong>Docente asesor:</strong> Prof. Judig Quispe Puma</p>
+    <p><strong>Institución:</strong> I.E técnico Agropecuario Urubamba</p>
+    <p><strong>Docente asesor:</strong> Prof. Judig Quispe Puma</p>
   </div>
 
 </div>
@@ -155,82 +140,9 @@
   <p>Pacha Data © 2025 - Inspirado en la sabiduría Inca</p>
 </footer>
 
-<!-- Bootstrap JS -->
+<!-- Scripts (solo estos 3, al final) -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-
-<script>
-  // Calendario Inca
-  
-  const calendarioInca = [
-  { mes: "Camay Quilla", desc: "Mes de la creación y ritos de purificación." }, // Enero
-  { mes: "Hatun Poqoy", desc: "Mes de las grandes maduraciones." },             // Febrero
-  { mes: "Pacha Poqoy", desc: "Mes de la maduración de la tierra." },           // Marzo
-  { mes: "Aymuray", desc: "Mes de cosecha y agradecimiento a la Pachamama." },  // Abril
-  { mes: "Inti Raymi", desc: "Fiesta del Sol, cosecha principal." },            // Mayo
-  { mes: "Chacra Conacuy", desc: "Época de descanso de la tierra." },           // Junio
-  { mes: "Chacra Yapuy", desc: "Preparación de la tierra para sembrar." },      // Julio
-  { mes: "Coyaraymi", desc: "Fiesta de la luna." },                             // Agosto
-  { mes: "Uma Raymi", desc: "Ritos al agua y limpieza de acequias." },          // Septiembre
-  { mes: "Aya Marcay", desc: "Mes de los difuntos y ancestros." },              // Octubre
-  { mes: "Qhapaq Raymi", desc: "Mes de las ceremonias principales." },          // Noviembre
-  { mes: "Capac Inti Raymi", desc: "Gran fiesta del Sol." }                     // Diciembre
-];
-
-const mesesGreg = [
-  "Enero","Febrero","Marzo","Abril","Mayo","Junio",
-  "Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre"
-];
-
-let fecha = new Date();
-let mesActual = fecha.getMonth(); // 0 = enero, 1 = febrero, etc.
-
-function mostrarMes(index = mesActual) {
-  document.getElementById("mesInca").innerText = calendarioInca[index].mes;
-  document.getElementById("descMes").innerText = calendarioInca[index].desc;
-  document.getElementById("mesGreg").innerText = `Mes gregoriano: ${mesesGreg[index]}`;
-}
-
-mostrarMes();
-
-
-  // Consejos Pachamama
-  const consejos = [
-    "Amigo agricultor, siembra con gratitud y cosecharás abundancia.",
-    "Riega tus plantas al amanecer, la Pachamama bendecirá tus cultivos.",
-    "Respeta la tierra y ella te devolverá vida.",
-    "Hoy es buen día para agradecer al sol y la lluvia.",
-    "En Aymuray, prepara la tierra con gratitud; en Inti Raymi, agradece al sol con alegría.",
-    "Cada mes del calendario inca trae un mensaje: escucha la voz de tus ancestros.",
-    "En Ccatac, la cosecha es abundancia; comparte con tu comunidad.",
-    "En Kapak Raymi, celebra la vida y guarda semillas para el próximo ciclo.",
-    "Así como el calendario inca honra la luna y el sol, honra tú tus cultivos con paciencia."
-  ];
-  function darConsejo() {
-    const random = Math.floor(Math.random() * consejos.length);
-    document.getElementById("consejo").innerText = consejos[random];
-  }
-
-  // API Clima
-  const apiKey = "a09e64f2fef539a2ba0df7d7fa3adbb1"; // reemplaza con tu API key de OpenWeatherMap
-  function obtenerClima() {
-    const ciudad = document.getElementById("ciudad").value;
-    if (!ciudad) {
-      alert("Por favor ingresa una ciudad");
-      return;
-    }
-    fetch(`https://api.openweathermap.org/data/2.5/weather?q=${ciudad}&appid=${apiKey}&units=metric&lang=es`)
-      .then(res => res.json())
-      .then(data => {
-        if (data.cod === "404") {
-          document.getElementById("clima").innerText = "Ciudad no encontrada";
-        } else {
-          document.getElementById("clima").innerText = `${data.weather[0].description}, ${data.main.temp}°C`;
-        }
-      })
-      .catch(() => {
-        document.getElementById("clima").innerText = "Error al obtener el clima";
-      });
-  }
-</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/skycons/1396634940/skycons.min.js"></script>
+<script src="assets/app.js?v=3"></script>
 </body>
 </html>
