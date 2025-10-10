@@ -1,70 +1,35 @@
-/* ===== HERO ===== */
-.hero{
-  /* usa el nombre EXACTO del archivo que subiste al repo */
-  background-image: url("/assets/FONDO.png");
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
-
-  min-height: 70vh;            /* 100vh si quieres pantalla completa */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-
-  position: relative;
-  margin-bottom: 2rem;         /* separa del siguiente bloque */
-  color: #fff;
-  text-shadow: 2px 2px 6px rgba(0,0,0,.7);
-}
-
-/* Overlay que NO tapa eventos ni scroll */
-.hero::after{
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: rgba(0,0,0,.35);
-  pointer-events: none;        /* no captura el mouse/scroll */
-}
-
-/* El contenido del hero queda encima del overlay */
-.hero .overlay{
-  position: relative;
-  z-index: 1;
-  text-align: center;
-}
-
-/* Navegación suave y offset para anclas */
-html { scroll-behavior: smooth; }
-[id]{ scroll-margin-top: 80px; } /* ajusta si tu navbar mide distinto */
-
-html { scroll-behavior: smooth; }
-[id] { scroll-margin-top: 80px; } /* ajusta a la altura de tu navbar */
-
-/* Tipografía opcional (colócala en el <head> si te gusta) */
-/* <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet"> */
-
-:root{
-  --hero-title: clamp(2.4rem, 5vw + 1rem, 5rem);   /* escala fluida */
-  --hero-sub:   clamp(1rem, 1.2vw + .8rem, 1.6rem);
+/* ===== VARIABLES ===== */
+:root {
+  --hero-title: clamp(2.4rem, 5vw + 1rem, 5rem);
+  --hero-sub: clamp(1rem, 1.2vw + .8rem, 1.6rem);
   --hero-shadow: 2px 6px 24px rgba(0,0,0,.45);
-  --accent: #ffd166;  /* dorado suave */
-  --accent-2:#8cd17d; /* verde suave */
+  --accent: #ffd166;
+  --accent-2: #8cd17d;
+  --verde-inca: #29732c;
+  --verde-oscuro: #173819;
 }
 
-/* Aplica la fuente si la usas */
-body{ 
-  font-family: "Poppins", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; 
+/* ===== TIPOGRAFÍA ===== */
+body {
+  font-family: "Poppins", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
 }
 
-/* HERO BASE */
-.hero{
+/* ===== NAVEGACIÓN SUAVE ===== */
+html {
+  scroll-behavior: smooth;
+}
+
+[id] {
+  scroll-margin-top: 80px;
+}
+
+/* ===== HERO ===== */
+.hero {
   background-image: url("/assets/FONDO.png");
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
-
-  min-height: 70vh;       /* 100vh si quieres pantalla completa */
+  min-height: 70vh;
   position: relative;
   margin-bottom: 2rem;
   color: #fff;
@@ -72,62 +37,45 @@ body{
   padding: 0 1rem;
 }
 
-/* Overlay oscuro que no bloquea */
-.hero::after{
-  content:"";
-  position:absolute; inset:0;
+.hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
   background: rgba(0,0,0,.35);
-  pointer-events:none;
+  pointer-events: none;
 }
 
-/* CENTRADO robusto: ocupa todo el ancho y centra por Y */
-.hero .overlay{
+.hero .overlay {
   position: absolute;
   top: 50%;
   left: 0;
-  right: 0;                 /* <- ocupa 100% del ancho */
+  right: 0;
   transform: translateY(-50%);
-  max-width: 1000px;        /* límite visual */
-  margin: 0 auto;           /* centra el contenedor dentro del ancho total */
+  max-width: 1000px;
+  margin: 0 auto;
   padding: 0 16px;
   text-align: center;
   z-index: 1;
-
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
 }
 
-/* (Opcional) quita el pseudo-emoji que puede desbalancear visualmente */
-.hero h1::before{ content: none; }
-
-/* Título */
-.hero h1{
+.hero h1 {
   font-size: var(--hero-title);
   font-weight: 800;
   letter-spacing: .5px;
   line-height: 1.1;
   text-shadow: var(--hero-shadow);
   margin: 0 0 .5rem 0;
-
-  /* degradado en el texto */
   background: linear-gradient(180deg, #fff 0%, #f5f7f6 60%, #d4f1d6 100%);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
 }
 
-/* Emoji decorativo */
-.hero h1::before{
-  content: "🌱";
-  font-size: .9em;
-  filter: drop-shadow(0 2px 8px rgba(0,0,0,.25));
-  margin-right: .5rem;
-}
-
-/* Subtítulo */
-.hero .lead{
+.hero .lead {
   font-size: var(--hero-sub);
   font-weight: 600;
   color: #f6fff7;
@@ -136,65 +84,31 @@ body{
   margin: 0 0 .5rem 0;
 }
 
-/* Línea decorativa */
-.hero .hero-accent{
+.hero .hero-accent {
   width: min(220px, 40vw);
   height: 4px;
-  margin: 0 auto 0;
+  margin: 0 auto;
   border-radius: 999px;
   background: linear-gradient(90deg, var(--accent), var(--accent-2));
   box-shadow: 0 6px 18px rgba(0,0,0,.25);
 }
 
-/* Ajustes finos en móviles */
-@media (max-width: 480px){
-  .hero h1{ letter-spacing: 0; font-size: 2rem; }
-  .hero .lead{ font-weight: 500; font-size: 1rem; }
-  .hero .hero-accent{ width: 120px; }
+@media (max-width: 480px) {
+  .hero h1 {
+    letter-spacing: 0;
+    font-size: 2rem;
+  }
+  .hero .lead {
+    font-weight: 500;
+    font-size: 1rem;
+  }
+  .hero .hero-accent {
+    width: 120px;
+  }
 }
 
-/* ===== CLIMA EN TU ZONA ===== */
-.clima-output{
-  padding: .9rem 1rem;
-  border: 1px solid #e7e7e7;
-  border-radius: 12px;
-  background: #f9fbf9;
-  box-shadow: inset 0 2px 12px rgba(0,0,0,.04);
-  min-height: 64px;
-}
-
-.clima-text{
-  font-size: 1.125rem;   /* ~18px */
-  font-weight: 600;
-  color: #2e7d32;        /* verde agradable, consistente con tu paleta */
-  margin: 0;
-}
-
-/* separa un poco el título de la caja */
-.clima-card h2, .card h2 {
-  margin-bottom: .75rem;
-}
-
-/* opción: bordes redondeados del input y botón al estilo "pill" */
-.form-control-lg{
-  border-radius: 12px;
-}
-.btn.btn-lg{
-  border-radius: 12px;
-}
-
-/* ==== Animación clima ==== */
-.clima-output { 
-  gap: .75rem;  /* separa texto e icono */
-}
-
-#skycon { 
-  flex: 0 0 auto; 
-  filter: drop-shadow(0 2px 8px rgba(0,0,0,.12)); 
-}
-
-/* ===== CARDS 3D y bordes suaves ===== */
-.card{
+/* ===== CARDS 3D ===== */
+.card {
   border: 0 !important;
   border-radius: 22px;
   background: #ffffff;
@@ -205,7 +119,7 @@ body{
   transition: transform .18s ease, box-shadow .18s ease;
 }
 
-.card:hover{
+.card:hover {
   transform: translateY(-3px);
   box-shadow:
     0 18px 36px rgba(0,0,0,.16),
@@ -213,19 +127,703 @@ body{
     inset 0 1px 0 rgba(255,255,255,.60);
 }
 
-.card .card-img-top{
+.card .card-img-top {
   border-radius: 16px;
   box-shadow: 0 6px 14px rgba(0,0,0,.08);
 }
 
-/* Ajustes extra al clima para coherencia */
-.clima-output{
-  border-radius: 16px;
-  background: #f7fbf7;
-  box-shadow:
-    inset 0 2px 6px rgba(0,0,0,.05),
-    0 8px 16px rgba(0,0,0,.05);
+/* ===== CLIMA - TEMPERATURA ===== */
+#climaTemp .display-4 {
+  color: var(--verde-inca);
+  font-weight: 800;
+  text-shadow: 2px 2px 4px rgba(0,0,0,.1);
 }
 
-.form-control-lg{ border-radius: 16px; }
-.btn.btn-lg{ border-radius: 16px; }
+#climaTemp .text-muted {
+  font-size: 1.2rem;
+  text-transform: capitalize;
+  color: #555 !important;
+}
+
+/* ===== CLIMA - DETALLES ===== */
+#climaDetalles {
+  background: linear-gradient(135deg, #f0f9f0 0%, #e8f5e9 100%);
+  padding: 1.2rem;
+  border-radius: 16px;
+  border: 2px solid #c8e6c9;
+  box-shadow: 0 4px 12px rgba(0,0,0,.08);
+}
+
+#climaDetalles > div {
+  padding: 8px 0;
+  border-bottom: 1px solid rgba(46, 125, 50, 0.1);
+}
+
+#climaDetalles > div:last-child {
+  border-bottom: none;
+}
+
+#climaDetalles span {
+  font-size: 1.05rem;
+  color: #555;
+}
+
+#climaDetalles strong {
+  font-size: 1.15rem;
+  color: var(--verde-inca);
+}
+
+/* ===== ANIMACIÓN SKYCONS ===== */
+#skycon {
+  filter: drop-shadow(0 4px 12px rgba(46, 125, 50, 0.25));
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+/* ===== ALERTAS CLIMÁTICAS ===== */
+.alert {
+  border-radius: 12px;
+  border: none;
+  box-shadow: 0 4px 12px rgba(0,0,0,.1);
+  animation: slideIn 0.5s ease-out;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.alert-warning {
+  background: linear-gradient(135deg, #fff3cd 0%, #ffe5a1 100%);
+  color: #856404;
+  border-left: 5px solid #ffc107;
+}
+
+.alert-danger {
+  background: linear-gradient(135deg, #f8d7da 0%, #f5c2c7 100%);
+  color: #721c24;
+  border-left: 5px solid #dc3545;
+}
+
+.alert-info {
+  background: linear-gradient(135deg, #d1ecf1 0%, #bee5eb 100%);
+  color: #0c5460;
+  border-left: 5px solid #17a2b8;
+}
+
+.alert-success {
+  background: linear-gradient(135deg, #d4edda 0%, #c3e6cb 100%);
+  color: #155724;
+  border-left: 5px solid #28a745;
+}
+
+/* ===== PRONÓSTICO EXTENDIDO ===== */
+#pronosticoExtendido .card {
+  background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+  border: 1px solid #e0e0e0 !important;
+  transition: all 0.3s ease;
+}
+
+#pronosticoExtendido .card:hover {
+  transform: scale(1.05);
+  border: 1px solid var(--verde-inca) !important;
+  box-shadow: 0 8px 20px rgba(46, 125, 50, 0.2);
+}
+
+#pronosticoExtendido .card img {
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,.15));
+}
+
+#pronosticoExtendido .card strong {
+  color: var(--verde-inca);
+  font-size: 1.3rem;
+}
+
+/* ===== CONSEJO PACHAMAMA ===== */
+#consejo {
+  line-height: 1.6;
+  font-weight: 500;
+}
+
+.btn-warning {
+  background: linear-gradient(135deg, #ffc107 0%, #ffb300 100%);
+  border: none;
+  box-shadow: 0 4px 12px rgba(255, 193, 7, 0.4);
+  transition: all 0.3s ease;
+}
+
+.btn-warning:hover {
+  background: linear-gradient(135deg, #ffb300 0%, #ffa000 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(255, 193, 7, 0.5);
+}
+
+/* ===== INPUTS Y BOTONES ===== */
+.form-control-lg {
+  border-radius: 16px;
+  border: 2px solid #e0e0e0;
+  padding: 12px 20px;
+  transition: all 0.3s ease;
+}
+
+.form-control-lg:focus {
+  border-color: var(--verde-inca);
+  box-shadow: 0 0 0 0.2rem rgba(46, 125, 50, 0.25);
+}
+
+.btn-lg {
+  border-radius: 16px;
+  padding: 12px 32px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+.btn-success {
+  background: linear-gradient(135deg, var(--verde-inca) 0%, var(--verde-oscuro) 100%);
+  border: none;
+  box-shadow: 0 4px 12px rgba(46, 125, 50, 0.3);
+  transition: all 0.3s ease;
+}
+
+.btn-success:hover {
+  background: linear-gradient(135deg, var(--verde-oscuro) 0%, var(--verde-inca) 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(46, 125, 50, 0.4);
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+  #climaTemp .display-4 {
+    font-size: 2.5rem;
+  }
+  
+  #skycon {
+    width: 80px !important;
+    height: 80px !important;
+  }
+  
+  #pronosticoExtendido .col {
+    flex: 0 0 50%;
+    max-width: 50%;
+  }
+}
+
+@media (max-width: 576px) {
+  #pronosticoExtendido .col {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+}
+
+/* ===== UTILIDADES ===== */
+.d-none {
+  display: none !important;
+}
+
+/* ===== MEJORAS VISUALES ===== */
+h2 {
+  color: var(--verde-inca);
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+}
+
+h4, h5 {
+  color: var(--verde-oscuro);
+  font-weight: 600;
+}
+
+/* ===== BIENVENIDA PACHAMAMA ===== */
+.pachamama-welcome {
+  background: linear-gradient(135deg, #2e7d32 0%, #1b5e20 100%);
+  border-radius: 24px;
+  padding: 2.5rem;
+  color: white;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 20px 40px rgba(46, 125, 50, 0.3);
+}
+
+.pachamama-welcome::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  right: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+  animation: pachaGlow 8s ease-in-out infinite;
+}
+
+@keyframes pachaGlow {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(-20px, -20px) scale(1.1); }
+}
+
+.pachamama-icon {
+  font-size: 4rem;
+  animation: pachaFloat 3s ease-in-out infinite;
+  filter: drop-shadow(0 4px 12px rgba(0,0,0,0.3));
+  display: inline-block;
+}
+
+@keyframes pachaFloat {
+  0%, 100% { transform: translateY(0) rotate(-5deg); }
+  50% { transform: translateY(-15px) rotate(5deg); }
+}
+
+.pachamama-text {
+  position: relative;
+  z-index: 1;
+  line-height: 1.8;
+  font-size: 1.15rem;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+}
+
+.pachamama-sparkle {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background: radial-gradient(circle, rgba(255,255,255,0.8) 0%, transparent 70%);
+  border-radius: 50%;
+  animation: sparkle 2s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes sparkle {
+  0%, 100% { 
+    opacity: 0;
+    transform: scale(0) rotate(0deg);
+  }
+  50% { 
+    opacity: 1;
+    transform: scale(1) rotate(180deg);
+  }
+}
+
+/* ===== CONSEJO DESTACADO ===== */
+.consejo-destacado {
+  background: linear-gradient(135deg, #fff9e6 0%, #fffaed 100%);
+  border: 3px solid #ffc107;
+  border-radius: 20px;
+  padding: 2rem;
+  box-shadow: 0 15px 35px rgba(255, 193, 7, 0.3);
+  position: relative;
+  overflow: hidden;
+}
+
+.consejo-destacado::before {
+  content: "🌿";
+  position: absolute;
+  font-size: 120px;
+  opacity: 0.08;
+  right: -20px;
+  top: -30px;
+  transform: rotate(15deg);
+}
+
+.consejo-destacado h3 {
+  color: #f57c00;
+  font-weight: 800;
+  margin-bottom: 1.5rem;
+  font-size: 1.5rem;
+  text-align: center;
+  animation: consejoTitle 2s ease-in-out infinite;
+}
+
+@keyframes consejoTitle {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+.consejo-destacado .alert {
+  background: white;
+  border-left: 5px solid #ffc107;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  margin-bottom: 0;
+}
+
+.consejo-destacado ol {
+  margin-top: 1rem;
+  padding-left: 1.5rem;
+}
+
+.consejo-destacado li {
+  margin-bottom: 1rem;
+  line-height: 1.7;
+  font-size: 1.05rem;
+  color: #333;
+}
+
+.consejo-destacado strong {
+  color: #2e7d32;
+}
+
+/* ===== SABIDURIA PACHAMAMA (Nueva sección) ===== */
+.sabiduria-section {
+  background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
+  border-radius: 24px;
+  padding: 2.5rem;
+  box-shadow: 0 15px 35px rgba(46, 125, 50, 0.2);
+}
+
+.sabiduria-section h2 {
+  text-align: center;
+  color: #1b5e20;
+  font-size: 2rem;
+  margin-bottom: 2rem;
+}
+
+.sabiduria-card {
+  background: white;
+  border-radius: 16px;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  border-left: 5px solid #4caf50;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease;
+}
+
+.sabiduria-card:hover {
+  transform: translateX(10px);
+}
+
+.sabiduria-card h4 {
+  color: #2e7d32;
+  margin-bottom: 1rem;
+  font-size: 1.3rem;
+}
+
+.sabiduria-card ol {
+  margin-bottom: 1rem;
+}
+
+.sabiduria-card li {
+  margin-bottom: 0.8rem;
+  line-height: 1.6;
+}
+
+.sabiduria-final {
+  background: linear-gradient(135deg, #ffd54f 0%, #ffb300 100%);
+  border-radius: 16px;
+  padding: 1.5rem;
+  color: #333;
+  box-shadow: 0 8px 20px rgba(255, 193, 7, 0.3);
+}
+
+.sabiduria-final h4 {
+  color: #e65100;
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.sabiduria-final ul {
+  list-style: none;
+  padding: 0;
+}
+
+.sabiduria-final li {
+  padding: 0.5rem 0;
+  font-size: 1.05rem;
+  line-height: 1.6;
+}
+
+.sabiduria-final li::before {
+  content: "🌾 ";
+  margin-right: 0.5rem;
+}
+
+/* ===== BOTONES AJUSTADOS ===== */
+.btn-sm-custom {
+  padding: 0.5rem 1rem;
+  font-size: 0.9rem;
+  border-radius: 12px;
+}
+
+.btn-group-custom {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+/* Input ajustado */
+.form-control-custom {
+  padding: 0.6rem 1rem;
+  font-size: 0.95rem;
+  border-radius: 12px;
+}
+
+/* ===== TEMPERATURA CENTRADA ===== */
+#climaTemp {
+  text-align: center;
+  padding: 1rem 0;
+}
+
+#climaTemp .display-4 {
+  color: var(--verde-inca);
+  font-weight: 800;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+  margin-bottom: 0.5rem;
+}
+
+#climaTemp .text-muted {
+  font-size: 1.2rem;
+  text-transform: capitalize;
+  color: #555 !important;
+}
+
+/* ===== ANIMACIONES CLIMÁTICAS ===== */
+
+/* Contenedor de efectos climáticos */
+.weather-effects {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 9999;
+  overflow: hidden;
+}
+
+/* NIEBLA - Para alta humedad */
+.fog-layer {
+  position: absolute;
+  width: 200%;
+  height: 100%;
+  background: linear-gradient(
+    to bottom,
+    rgba(200, 220, 230, 0) 0%,
+    rgba(200, 220, 230, 0.3) 30%,
+    rgba(200, 220, 230, 0.4) 50%,
+    rgba(200, 220, 230, 0.3) 70%,
+    rgba(200, 220, 230, 0) 100%
+  );
+  animation: fogMove 20s ease-in-out infinite;
+}
+
+.fog-layer:nth-child(2) {
+  animation: fogMove 25s ease-in-out infinite reverse;
+  opacity: 0.6;
+  animation-delay: -5s;
+}
+
+.fog-layer:nth-child(3) {
+  animation: fogMove 30s ease-in-out infinite;
+  opacity: 0.4;
+  animation-delay: -10s;
+}
+
+@keyframes fogMove {
+  0% { transform: translateX(-50%) translateY(0); }
+  50% { transform: translateX(0%) translateY(-10px); }
+  100% { transform: translateX(-50%) translateY(0); }
+}
+
+/* GOTAS DE LLUVIA */
+.raindrop {
+  position: absolute;
+  width: 2px;
+  height: 20px;
+  background: linear-gradient(
+    to bottom,
+    rgba(100, 150, 200, 0) 0%,
+    rgba(100, 150, 200, 0.6) 50%,
+    rgba(100, 150, 200, 0.8) 100%
+  );
+  animation: fall linear infinite;
+  opacity: 0.7;
+}
+
+@keyframes fall {
+  0% { transform: translateY(-100px); opacity: 0; }
+  10% { opacity: 0.7; }
+  90% { opacity: 0.7; }
+  100% { transform: translateY(100vh); opacity: 0; }
+}
+
+.raindrop:nth-child(odd) {
+  width: 1.5px;
+  height: 15px;
+  opacity: 0.5;
+}
+
+.raindrop:nth-child(3n) {
+  width: 2.5px;
+  height: 25px;
+}
+
+/* COPOS DE NIEVE */
+.snowflake {
+  position: absolute;
+  color: white;
+  font-size: 1.5rem;
+  animation: snowfall linear infinite;
+  opacity: 0.8;
+  text-shadow: 0 0 5px rgba(255,255,255,0.8);
+}
+
+@keyframes snowfall {
+  0% {
+    transform: translateY(-100px) rotate(0deg);
+    opacity: 0;
+  }
+  10% { opacity: 0.8; }
+  90% { opacity: 0.8; }
+  100% {
+    transform: translateY(100vh) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+/* HOJAS VOLANDO (viento) */
+.leaf {
+  position: absolute;
+  font-size: 2rem;
+  animation: windBlow linear infinite;
+  opacity: 0.7;
+}
+
+@keyframes windBlow {
+  0% {
+    transform: translateX(-100px) translateY(0) rotate(0deg);
+    opacity: 0;
+  }
+  10% { opacity: 0.7; }
+  50% { transform: translateX(50vw) translateY(30vh) rotate(180deg); }
+  90% { opacity: 0.7; }
+  100% {
+    transform: translateX(110vw) translateY(-20vh) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+/* RAYOS DE SOL */
+.sun-ray {
+  position: absolute;
+  width: 2px;
+  height: 100%;
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 200, 0, 0) 0%,
+    rgba(255, 200, 0, 0.3) 30%,
+    rgba(255, 200, 0, 0.2) 70%,
+    rgba(255, 200, 0, 0) 100%
+  );
+  animation: sunRayMove 15s ease-in-out infinite;
+  transform-origin: top;
+}
+
+@keyframes sunRayMove {
+  0%, 100% { transform: translateX(0) scaleY(1); opacity: 0.3; }
+  50% { transform: translateX(20px) scaleY(1.1); opacity: 0.6; }
+}
+
+/* RELÁMPAGOS */
+.lightning {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.8);
+  animation: flash 0.3s ease-in-out;
+  pointer-events: none;
+}
+
+@keyframes flash {
+  0%, 100% { opacity: 0; }
+  50% { opacity: 1; }
+}
+
+/* PARTÍCULAS DE HUMEDAD */
+.humidity-particle {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: radial-gradient(circle, rgba(150, 200, 230, 0.6) 0%, transparent 70%);
+  border-radius: 50%;
+  animation: float-particle linear infinite;
+  opacity: 0;
+}
+
+@keyframes float-particle {
+  0% { transform: translateY(100vh) translateX(0) scale(0); opacity: 0; }
+  10% { opacity: 0.6; transform: translateY(90vh) translateX(10px) scale(1); }
+  50% { opacity: 0.8; transform: translateY(50vh) translateX(-20px) scale(1.2); }
+  90% { opacity: 0.6; transform: translateY(10vh) translateX(15px) scale(1); }
+  100% { transform: translateY(-10vh) translateX(0) scale(0); opacity: 0; }
+}
+
+/* Efecto de pulsación en la card */
+.high-humidity-pulse {
+  animation: humidityPulse 3s ease-in-out infinite;
+}
+
+@keyframes humidityPulse {
+  0%, 100% {
+    box-shadow: 
+      0 14px 28px rgba(100, 150, 200, 0.15),
+      0 10px 10px rgba(100, 150, 200, 0.1);
+  }
+  50% {
+    box-shadow: 
+      0 14px 28px rgba(100, 150, 200, 0.25),
+      0 10px 10px rgba(100, 150, 200, 0.15),
+      inset 0 0 20px rgba(100, 150, 200, 0.1);
+  }
+}
+
+/* Overlay sutil para alta humedad */
+.humidity-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(150, 200, 230, 0.05) 0%,
+    transparent 70%
+  );
+  pointer-events: none;
+  z-index: 1;
+  animation: humidityOverlay 8s ease-in-out infinite;
+}
+
+@keyframes humidityOverlay {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 0.6; }
+}
+
+/* Reduce animaciones en dispositivos que prefieren menos movimiento */
+@media (prefers-reduced-motion: reduce) {
+  .fog-layer,
+  .raindrop,
+  .snowflake,
+  .leaf,
+  .sun-ray,
+  .lightning,
+  .humidity-particle,
+  .high-humidity-pulse,
+  .humidity-overlay,
+  .pachaFloat,
+  .pachaGlow {
+    animation: none !important;
+  }
+}
+
+
