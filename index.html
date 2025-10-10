@@ -43,21 +43,44 @@
 
   <!-- Bienvenida Pachamama -->
   <div class="pachamama-welcome mb-5">
-    <div class="text-center mb-3">
+    <!-- Ondas de energía emanando del planeta -->
+    <div class="energy-wave"></div>
+    <div class="energy-wave"></div>
+    <div class="energy-wave"></div>
+    
+    <!-- Estrellas de fondo -->
+    <div class="star" style="top: 15%; left: 10%; animation-delay: 0s;"></div>
+    <div class="star" style="top: 25%; left: 85%; animation-delay: 0.5s;"></div>
+    <div class="star" style="top: 70%; left: 15%; animation-delay: 1s;"></div>
+    <div class="star" style="top: 80%; left: 80%; animation-delay: 1.5s;"></div>
+    <div class="star" style="top: 40%; left: 5%; animation-delay: 0.7s;"></div>
+    <div class="star" style="top: 60%; left: 92%; animation-delay: 1.2s;"></div>
+    
+    <!-- Hojas flotantes -->
+    <div class="floating-leaf" style="left: 10%;">🌿</div>
+    <div class="floating-leaf" style="left: 85%; animation-delay: 4s;">🍃</div>
+    
+    <div class="text-center mb-4">
       <span class="pachamama-icon">🌍</span>
     </div>
+    
     <div class="pachamama-text">
-      <p class="fs-4 fw-bold text-center mb-3">Soy yo, tu Pachamama</p>
-      <p class="text-center">
+      <p class="fs-4 fw-bold mb-3" data-text="Soy yo, tu Pachamama">Soy yo, tu Pachamama</p>
+      <p>
         Te hablo directo desde mi corazón andino. Escucha mis pronósticos con atención, 
         porque son mi voz para ti. ¡Sígueme y protegeremos juntos tu chacra!
       </p>
     </div>
-    <!-- Partículas decorativas -->
+    
+    <!-- Partículas decorativas mejoradas (más cantidad) -->
     <div class="pachamama-sparkle" style="top: 10%; left: 15%;"></div>
     <div class="pachamama-sparkle" style="top: 20%; right: 20%; animation-delay: 0.5s;"></div>
     <div class="pachamama-sparkle" style="bottom: 15%; left: 25%; animation-delay: 1s;"></div>
     <div class="pachamama-sparkle" style="bottom: 20%; right: 15%; animation-delay: 1.5s;"></div>
+    <div class="pachamama-sparkle" style="top: 50%; left: 5%; animation-delay: 0.3s;"></div>
+    <div class="pachamama-sparkle" style="top: 60%; right: 8%; animation-delay: 1.8s;"></div>
+    <div class="pachamama-sparkle" style="top: 35%; left: 90%; animation-delay: 0.8s;"></div>
+    <div class="pachamama-sparkle" style="bottom: 40%; right: 85%; animation-delay: 2s;"></div>
   </div>
 
   <!-- FILA 1: Mes Inca + Consejo Pachamama (misma altura) -->
@@ -67,7 +90,7 @@
       <div class="card p-4 h-100">
         <h2 class="text-center">📅 Mes Inca Actual</h2>
         <div class="d-flex justify-content-center my-3">
-          <img src="assets/calendario.png" alt="Calendario Inca" class="img-fluid rounded" style="max-width:380px;">
+          <img src="assets/calendario.png" alt="Calendario Inca" class="img-fluid rounded" style="max-width:280px;">
         </div>
         <h4 id="mesInca" class="text-success text-center" style="font-size:32px;"></h4>
         <p id="descMes" class="text-center" style="font-size:18px;"></p>
@@ -87,10 +110,7 @@
             Consulta el clima primero para recibir el consejo de la Pachamama 🌱
           </p>
         </div>
-                    <div class="col-md-4 col-lg-12">
-
         <button onclick="darConsejo()" class="btn btn-warning btn-sm-custom mt-2">Actualizar Consejo</button>
-           </div>
       </div>
     </div>
   </div>

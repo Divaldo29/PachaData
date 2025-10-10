@@ -1,4 +1,161 @@
-// === Calendario Inca ===
+function mostrarAlertas(data, pronostico) {
+  const alertas = document.getElementById("alertasClima");
+  const temp = data.main?.temp ?? 0;
+  const humidity = data.main?.humidity ?? 0;
+  const windSpeed = data.wind?.speed ?? 0;
+  const main = (data.weather?.[0]?.main || "").toLowerCase();
+  const lluviaInfo = calcularProbabilidadLluvia(pronostico);
+  
+  // Activar efectos climáticos con todos los parámetros
+  activarEfectosClimaticos(humidity, main, lluviaInfo.probabilidad, temp, windSpeed);
+
+  // Generar consejo detallado
+  const consejoDetallado = generarConsejoDetallado(data, pronostico);
+  
+  // Mostrar el consejo destacado
+  const consejoCard = document.getElementById("consejoDestacadoCard");
+  if (consejoCard) {
+    document.getElementById("consejoDestacado").innerHTML = `
+      <h3>${consejoDetallado.titulo}</h3>
+      <div class="alert alert-warning">
+        <strong>${consejoDetallado.mensaje}</strong>
+      </div>
+      <ol>
+        ${consejoDetallado.pasos.map(paso => `<li><strong>"</strong>${paso}<strong>"</strong></li>`).join('')}
+      </ol>
+    `;
+    consejoCard.style.display = 'block';
+  }
+
+  // Generar cards dinámicas
+  let cardsHTML = '<div class="alertas-grid">';
+  let hasAlerts = false;
+
+  // Card 1: Lluvia
+  if (main.includes("rain") || main.includes("thunderstorm") || lluviaInfo.probabilidad > 50) {
+    hasAlerts = true;
+    cardsHTML += `
+      <div class="alerta-card lluvia">
+        <div class="alerta-card-icon">🌧️</div>
+        <div class="alerta-card-title">Lluvia</div>
+        <div class="alerta-card-value">${lluviaInfo.probabilidad}%</div>
+        <div class="alerta-card-desc">Probabilidad en 24h</div>
+        ${lluviaInfo.cantidad > 0 ? `<div class="alerta-card-badge">${lluviaInfo.cantidad}mm esperados</div>` : ''}
+      </div>
+    `;
+  }
+
+  // Card 2: Humedad
+  if (humidity > 70) {
+    hasAlerts = true;
+    const humedadStatus = humidity > 85 ? 'Muy Alta' : 'Alta';
+    const humedadClass = humidity > 85 ? 'humedad' : 'humedad';
+    cardsHTML += `
+      <div class="alerta-card ${humedadClass}">
+        <div class="alerta-card-icon">💧</div>
+        <div class="alerta-card-title">Humedad</div>
+        <div class="alerta-card-value">${humidity}%</div>
+        <div class="alerta-card-desc">${humedadStatus} - Riesgo de hongos</div>
+        <div class="alerta-card-badge">Ventila tus cultivos</div>
+      </div>
+    `;
+  }
+
+  // Card 3: Temperatura (Calor)
+  if (temp > 30) {
+    hasAlerts = true;
+    const tempStatus = temp > 35 ? 'Extremo' : temp > 32 ? 'Muy Alto' : 'Alto';
+    cardsHTML += `
+      <div class="alerta-card calor">
+        <div class="alerta-card-icon">🔥</div>
+        <div class="alerta-card-title">Calor ${tempStatus}</div>
+        <div class="alerta-card-value">${Math.round(temp)}°C</div>
+        <div class="alerta-card-desc">Aumenta el riego</div>
+        <div class="alerta-card-badge">Protege del sol</div>
+      </div>
+    `;
+  }
+
+  // Card 4: Frío/Helada
+  if (temp < 10) {
+    hasAlerts = true;
+    const frioStatus = temp < 5 ? 'Helada' : 'Frío';
+    const frioIcon = temp < 5 ? '❄️' : '🧊';
+    cardsHTML += `
+      <div class="alerta-card frio">
+        <div class="alerta-card-icon">${frioIcon}</div>
+        <div class="alerta-card-title">${frioStatus}</div>
+        <div class="alerta-card-value">${Math.round(temp)}°C</div>
+        <div class="alerta-card-desc">Protege plantas sensibles</div>
+        <div class="alerta-card-badge">Cubre con paja/ichu</div>
+      </div>
+    `;
+  }
+
+  // Card 5: Viento
+  if (windSpeed > 8) {
+    hasAlerts = true;
+    const windKmh = (windSpeed * 3.6).toFixed(0);
+    const windStatus = windSpeed > 12 ? 'Muy Fuerte' : 'Fuerte';
+    cardsHTML += `
+      <div class="alerta-card viento">
+        <div class="alerta-card-icon">💨</div>
+        <div class="alerta-card-title">Viento ${windStatus}</div>
+        <div class="alerta-card-value">${windKmh} km/h</div>
+        <div class="alerta-card-desc">Asegura estructuras</div>
+        <div class="alerta-card-badge">Planta cercos vivos</div>
+      </div>
+    `;
+  }
+
+  // Verificar temperaturas extremas próximas
+  const tempMaxProxima = Math.max(...pronostico.list.slice(0, 16).map(item => item.main.temp_max));
+  const tempMinProxima = Math.min(...pronostico.list.slice(0, 16).map(item => item.main.temp_min));
+  
+  if (tempMaxProxima > 35 && temp <= 35) {
+    hasAlerts = true;
+    cardsHTML += `
+      <div class="alerta-card calor">
+        <div class="alerta-card-icon">🌡️</div>
+        <div class="alerta-card-title">Ola de Calor</div>
+        <div class="alerta-card-value">${Math.round(tempMaxProxima)}°C</div>
+        <div class="alerta-card-desc">Próximamente</div>
+        <div class="alerta-card-badge">Prepara más agua</div>
+      </div>
+    `;
+  }
+  
+  if (tempMinProxima < 3 && temp >= 3) {
+    hasAlerts = true;
+    cardsHTML += `
+      <div class="alerta-card frio">
+        <div class="alerta-card-icon">🧊</div>
+        <div class="alerta-card-title">Helada Próxima</div>
+        <div class="alerta-card-value">${Math.round(tempMinProxima)}°C</div>
+        <div class="alerta-card-desc">En los próximos días</div>
+        <div class="alerta-card-badge">Alerta temprana</div>
+      </div>
+    `;
+  }
+
+  // Si no hay alertas, mostrar condiciones favorables
+  if (!hasAlerts) {
+    cardsHTML += `
+      <div class="alerta-card favorable">
+        <div class="alerta-card-icon">✅</div>
+        <div class="alerta-card-title">Condiciones</div>
+        <div class="alerta-card-value">Favorables</div>
+        <div class="alerta-card-desc">Buen día para trabajar</div>
+        <div class="alerta-card-badge">Aprovecha el clima</div>
+      </div>
+    `;
+  }
+
+  cardsHTML += '</div>';
+  
+  alertas.innerHTML = cardsHTML;
+  alertas.classList.remove("d-none");
+}// === Calendario Inca ===
 const calendarioInca = [
   { mes: "Camay Quilla", desc: "Mes de la creación y ritos de purificación." },
   { mes: "Hatun Poqoy", desc: "Mes de las grandes maduraciones." },
