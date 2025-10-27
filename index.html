@@ -255,5 +255,59 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/skycons/1396634940/skycons.min.js"></script>
 <script src="assets/app.js"></script>
+  <script>
+  // --- Esperar a que el DOM cargue ---
+  document.addEventListener("DOMContentLoaded", function () {
+
+    // ============================
+    // 1️⃣ EVENTO: BOTON_VERCLIMA
+    // ============================
+    const btnVerClima = document.querySelector("button.btn.btn-success");
+    if (btnVerClima) {
+      btnVerClima.addEventListener("click", function () {
+        gtag("event", "BOTON_VERCLIMA", {
+          "button_text": "Ver Clima",
+          "page_location": window.location.href
+        });
+        console.log("Evento GA4: BOTON_VERCLIMA enviado ✅");
+      });
+    }
+
+    // ==================================
+    // 2️⃣ EVENTO: BOTON_ACTCONSEJO
+    // ==================================
+    const btnConsejo = document.querySelector("button.btn.btn-warning");
+    if (btnConsejo) {
+      btnConsejo.addEventListener("click", function () {
+        gtag("event", "BOTON_ACTCONSEJO", {
+          "button_text": "Actualizar Consejo",
+          "page_location": window.location.href
+        });
+        console.log("Evento GA4: BOTON_ACTCONSEJO enviado ✅");
+      });
+    }
+
+    // ============================
+    // 3️⃣ EVENTO: SCROLL_25
+    // ============================
+    let scrollTriggered = false;
+    window.addEventListener("scroll", function () {
+      if (!scrollTriggered) {
+        const scrollPosition = window.scrollY + window.innerHeight;
+        const documentHeight = document.body.offsetHeight;
+
+        if (scrollPosition >= documentHeight * 0.25) {
+          scrollTriggered = true; // evita que se dispare más de una vez
+          gtag("event", "SCROLL_25", {
+            "scroll_depth": "25%",
+            "page_location": window.location.href
+          });
+          console.log("Evento GA4: SCROLL_25 enviado ✅");
+        }
+      }
+    });
+
+  });
+</script>
 </body>
 </html>
